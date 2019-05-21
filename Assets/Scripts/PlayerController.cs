@@ -26,13 +26,78 @@ public class PlayerController : MonoBehaviour
 
     void InputHandler ()
     {
-        aimingDirection.x = Input.GetAxis(gameObject.name + "_Horizontal");
-        aimingDirection.y = Input.GetAxis(gameObject.name + "_Vertical");
-        Debug.Log("Aims at: " + aimingDirection);
+        aimingDirection.y = -Input.GetAxis(gameObject.name + "_Horizontal");
+        aimingDirection.x = Input.GetAxis(gameObject.name + "_Vertical");
+        //Debug.Log("Aims at: " + aimingDirection);
         if(qrCode == null)
         {
             qrCode = transform.GetChild(0).gameObject;
         }
         qrCode.transform.localScale = Vector3.one * Mathf.Clamp01( aimingDirection.magnitude);
+
+        if(aimingDirection.magnitude > 0.1f)
+        {
+            if(gameObject.name == "P1")
+            {
+                if(aimingDirection.x == 0 && aimingDirection.y <= -0.5f)
+                {
+                    Debug.Log("P3");
+                }
+                if (aimingDirection.x >= 0.5f && aimingDirection.y == 0)
+                {
+                    Debug.Log("P2");
+                }
+                if (aimingDirection.x >= 0.5f && aimingDirection.y <= -0.5f)
+                {
+                    Debug.Log("P4");
+                }
+            }
+            if (gameObject.name == "P2")
+            {
+                if (aimingDirection.x == 0 && aimingDirection.y >= -0.5f)
+                {
+                    Debug.Log("P4");
+                }
+                if (aimingDirection.x <= -0.5f && aimingDirection.y == 0)
+                {
+                    Debug.Log("P1");
+                }
+                if (aimingDirection.x <= -0.5f && aimingDirection.y <= -0.5f)
+                {
+                    Debug.Log("P3");
+                }
+            }
+            if (gameObject.name == "P3")
+            {
+                if (aimingDirection.x == 0 && aimingDirection.y >= 0.5f)
+                {
+                    Debug.Log("P1");
+                }
+                if (aimingDirection.x >= 0.5f && aimingDirection.y == 0)
+                {
+                    Debug.Log("P4");
+                }
+                if (aimingDirection.x >= 0.5f && aimingDirection.y >= 0.5f)
+                {
+                    Debug.Log("P2");
+                }
+            }
+            if (gameObject.name == "P4")
+            {
+                if (aimingDirection.x == 0 && aimingDirection.y >= 0.5f)
+                {
+                    Debug.Log("P2");
+                }
+                if (aimingDirection.x <= -0.5f && aimingDirection.y == 0)
+                {
+                    Debug.Log("P3");
+                }
+                if (aimingDirection.x <= -0.5f && aimingDirection.y >= 0.5f)
+                {
+                    Debug.Log("P1");
+                }
+            }
+
+        }
     }
 }
