@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     public bool ready = false;
     public bool dead = false;
     public GameObject qrCode;
+    private string previousTraget = "";
+    private float accuracy = 0;
+    public float initialAccuracy = 30, accuracyIncreasePerSec = 15;
+    public Animator animator;
+    
 
     Vector2 aimingDirection;
 
@@ -34,70 +39,158 @@ public class PlayerController : MonoBehaviour
             qrCode = transform.GetChild(0).gameObject;
         }
         qrCode.transform.localScale = Vector3.one * Mathf.Clamp01( aimingDirection.magnitude);
-
-        if(aimingDirection.magnitude > 0.1f)
+        if (animator != null)
         {
+            animator.SetBool("X", false);
+            animator.SetInteger("Y", 0);
+        }
+
+            if (aimingDirection.magnitude > 0.1f)
+        {
+
             if(gameObject.name == "P1")
             {
                 if(aimingDirection.x == 0 && aimingDirection.y <= -0.5f)
                 {
-                    Debug.Log("P3");
+                    AimingAt("P3");
                 }
                 if (aimingDirection.x >= 0.5f && aimingDirection.y == 0)
                 {
-                    Debug.Log("P2");
+                    AimingAt("P2");
                 }
                 if (aimingDirection.x >= 0.5f && aimingDirection.y <= -0.5f)
                 {
-                    Debug.Log("P4");
+                    AimingAt("P4");
                 }
             }
             if (gameObject.name == "P2")
             {
-                if (aimingDirection.x == 0 && aimingDirection.y >= -0.5f)
+                if (aimingDirection.x == 0 && aimingDirection.y <= -0.5f)
                 {
-                    Debug.Log("P4");
+                    AimingAt("P4");
                 }
                 if (aimingDirection.x <= -0.5f && aimingDirection.y == 0)
                 {
-                    Debug.Log("P1");
+                    AimingAt("P1");
                 }
                 if (aimingDirection.x <= -0.5f && aimingDirection.y <= -0.5f)
                 {
-                    Debug.Log("P3");
+                    AimingAt("P3");
                 }
             }
             if (gameObject.name == "P3")
             {
                 if (aimingDirection.x == 0 && aimingDirection.y >= 0.5f)
                 {
-                    Debug.Log("P1");
+                    AimingAt("P1");
                 }
                 if (aimingDirection.x >= 0.5f && aimingDirection.y == 0)
                 {
-                    Debug.Log("P4");
+                    AimingAt("P4");
                 }
                 if (aimingDirection.x >= 0.5f && aimingDirection.y >= 0.5f)
                 {
-                    Debug.Log("P2");
+                    AimingAt("P2");
                 }
             }
             if (gameObject.name == "P4")
             {
                 if (aimingDirection.x == 0 && aimingDirection.y >= 0.5f)
                 {
-                    Debug.Log("P2");
+                    AimingAt("P2");
+                    
                 }
                 if (aimingDirection.x <= -0.5f && aimingDirection.y == 0)
                 {
-                    Debug.Log("P3");
+                    AimingAt("P3");
                 }
                 if (aimingDirection.x <= -0.5f && aimingDirection.y >= 0.5f)
                 {
-                    Debug.Log("P1");
+                    AimingAt("P1");
                 }
+            }else
+            {
+                previousTraget = "";
             }
+            
 
         }
+        
+    }
+    private void AimingAt (string player)
+    {
+        if (animator != null)
+        {
+            Debug.Log(aimingDirection.y + "Y");
+            // Y dirction
+            if (aimingDirection.y > 0)
+            {
+                animator.SetInteger("Y", 1);
+                //animator.SetInteger("Y", 1);
+                //Debug.Log("settign Y");
+            }
+            else if (aimingDirection.y < 0)
+            {
+                animator.SetInteger("Y", -1);
+            }
+            else
+            {
+                animator.SetInteger("Y", 0);
+            }
+            //X direction
+            if (aimingDirection.x > 0)
+            {
+                animator.SetBool("X", true);
+
+                animator.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else if (aimingDirection.x < 0)
+            {
+                animator.SetBool("X", true);
+
+                animator.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                animator.SetBool("X", false);
+
+                animator.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+        }
+
+        if (previousTraget == player)
+        {
+            accuracy += accuracyIncreasePerSec * Time.deltaTime;
+        }else
+        {
+            accuracy = initialAccuracy;
+           
+        }
+
+        accuracy = Mathf.Clamp(accuracy, 0, 90 );
+        
+
+
+        if(Input.GetButtonDown(gameObject.name + "_Fire"))
+        {
+            float tmpRandomValue = Random.Range(0f, 100f);
+            if (tmpRandomValue <= accuracy)
+            {
+                
+                Debug.Log("hit");
+            }else
+            {
+                Debug.Log("Missed");
+            }
+            accuracy -= accuracyIncreasePerSec / 2;
+            accuracy = Mathf.Clamp(accuracy, initialAccuracy, 90);
+            if (animator != null)
+            {
+                animator.SetTrigger("Fire");
+            }
+        }
+        previousTraget = player;
+
+
     }
 }
