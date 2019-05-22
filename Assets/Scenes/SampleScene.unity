@@ -480,10 +480,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0003246665
-    y: 0.00057804585
-    width: 0.99935067
-    height: 0.9988439
+    x: 0.0021496117
+    y: 0.059633017
+    width: 0.9957008
+    height: 0.88073397
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -833,7 +833,9 @@ MonoBehaviour:
   dead: 0
   qrCode: {fileID: 0}
   initialAccuracy: 30
-  accuracyIncreasePerSec: 50
+  accuracyIncreasePerSec: 25
+  accuracyLossperShot: 25
+  maxAccuracy: 85
   animator: {fileID: 1026780540}
   splatter: {fileID: 3844906850452483317, guid: f40099b76a89bc54e90613c28d953adf,
     type: 3}
@@ -1284,7 +1286,9 @@ MonoBehaviour:
   dead: 0
   qrCode: {fileID: 0}
   initialAccuracy: 30
-  accuracyIncreasePerSec: 50
+  accuracyIncreasePerSec: 25
+  accuracyLossperShot: 25
+  maxAccuracy: 85
   animator: {fileID: 2098903506}
   splatter: {fileID: 3844906850452483317, guid: f40099b76a89bc54e90613c28d953adf,
     type: 3}
@@ -1384,7 +1388,9 @@ MonoBehaviour:
   dead: 0
   qrCode: {fileID: 0}
   initialAccuracy: 30
-  accuracyIncreasePerSec: 50
+  accuracyIncreasePerSec: 25
+  accuracyLossperShot: 25
+  maxAccuracy: 85
   animator: {fileID: 1841985184}
   splatter: {fileID: 3844906850452483317, guid: f40099b76a89bc54e90613c28d953adf,
     type: 3}
@@ -2059,7 +2065,9 @@ MonoBehaviour:
   dead: 0
   qrCode: {fileID: 0}
   initialAccuracy: 30
-  accuracyIncreasePerSec: 50
+  accuracyIncreasePerSec: 25
+  accuracyLossperShot: 25
+  maxAccuracy: 85
   animator: {fileID: 566950065}
   splatter: {fileID: 3844906850452483317, guid: f40099b76a89bc54e90613c28d953adf,
     type: 3}

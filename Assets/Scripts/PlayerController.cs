@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject qrCode;
     private string previousTraget = "";
     private float accuracy = 0;
-    public float initialAccuracy = 30, accuracyIncreasePerSec = 15;
+    public float initialAccuracy = 30, accuracyIncreasePerSec = 45, accuracyLossperShot = 15, maxAccuracy = 95;
     public Animator animator;
     public GameObject splatter, splitter;
     
@@ -46,12 +46,12 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("Y", 0);
         }
 
-            if (aimingDirection.magnitude > 0.1f)
+        if (aimingDirection.magnitude > 0.1f)
         {
 
-            if(gameObject.name == "P1")
+            if (gameObject.name == "P1")
             {
-                if(aimingDirection.x == 0 && aimingDirection.y <= -0.5f)
+                if (aimingDirection.x == 0 && aimingDirection.y <= -0.5f)
                 {
                     AimingAt("P3");
                 }
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
                 if (aimingDirection.x == 0 && aimingDirection.y >= 0.5f)
                 {
                     AimingAt("P2");
-                    
+
                 }
                 if (aimingDirection.x <= -0.5f && aimingDirection.y == 0)
                 {
@@ -109,13 +109,15 @@ public class PlayerController : MonoBehaviour
                 {
                     AimingAt("P1");
                 }
-            }else
-            {
-                previousTraget = "";
             }
+        }
+        else
+        {
+            previousTraget = "";
+        }
             
 
-        }
+        
         
     }
     private void AimingAt (string player)
@@ -165,15 +167,17 @@ public class PlayerController : MonoBehaviour
         }else
         {
             accuracy = initialAccuracy;
+            //Debug.Log("resetting accuracy");
            
         }
 
-        accuracy = Mathf.Clamp(accuracy, 0, 90 );
+        accuracy = Mathf.Clamp(accuracy, initialAccuracy, maxAccuracy );
         
 
 
         if(Input.GetButtonDown(gameObject.name + "_Fire"))
         {
+            //Debug.Log("Hitchance: " + accuracy);
             float tmpRandomValue = Random.Range(0f, 100f);
             if (tmpRandomValue <= accuracy)
             {
@@ -222,8 +226,8 @@ public class PlayerController : MonoBehaviour
 
                 }
             }
-            accuracy -= accuracyIncreasePerSec / 2;
-            accuracy = Mathf.Clamp(accuracy, initialAccuracy, 90);
+            accuracy -= accuracyLossperShot;
+            accuracy = Mathf.Clamp(accuracy, initialAccuracy, maxAccuracy);
             if (animator != null)
             {
                 animator.SetTrigger("Fire");
