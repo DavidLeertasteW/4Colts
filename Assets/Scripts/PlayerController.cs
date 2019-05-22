@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
     Vector2 aimingDirection;
     private Animator menuAnimator;
     AudioManager audioManager;
+   
+
     
    
 
@@ -301,9 +304,40 @@ public class PlayerController : MonoBehaviour
 
     void Bleeding ()
     {
+        if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
+        {
+            //Time.timeScale = 0.01f;
+            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.name + " " + "Won!";
+            Destroy(this);
+            return;
+        }
+        if(ammo == 0)
+        {
+            bool isOver = true;
+            foreach (var item in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                if (item.GetComponent<PlayerController>().ammo > 0)
+                {
+                    isOver = false;
+                }
+                
+            }
+            if (isOver)
+            {
+                //Time.timeScale = 0.01f;
+                transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Its Over!";
+                Destroy(this);
+                return;
+            }
+        }
         health -= woundCount * bleedingPerWound * Time.deltaTime;
         if(health <= 0)
         {
+            if(GameObject.FindGameObjectsWithTag("Player").Length ==1)
+            {
+                Time.timeScale = 0.01f;
+                return;
+            }
             Destroy(animator.gameObject);
             Destroy(gameObject);
 
