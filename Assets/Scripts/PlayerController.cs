@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour
     public float bleedingPerWound = 5;
 
     public int menuState = 0;
+    public int ammo = 6;
     Vector2 aimingDirection;
     private Animator menuAnimator;
+    AudioManager audioManager;
     
    
 
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         menuAnimator = gameObject.GetComponent<Animator>();
+        audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
 
         if(qrCode == null)
         {
@@ -200,8 +203,14 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonDown(gameObject.name + "_Fire"))
         {
+            if(ammo <= 0)
+            {
+                audioManager.PlaySFX("Empty");
+                return;
+            }
             //Debug.Log("Hitchance: " + accuracy);
             float tmpRandomValue = Random.Range(0f, 100f);
+            ammo -= 1;
             if (tmpRandomValue <= accuracy)
             {
                 
@@ -212,6 +221,7 @@ public class PlayerController : MonoBehaviour
                     
                     if(item.name == player)
                     {
+                        audioManager.PlaySFX("Shot Hit");
                         item.GetComponent<PlayerController>().woundCount += 1;
                         GameObject tmpObj =  GameObject.Instantiate(splatter);
                         tmpObj.transform.position = item.GetComponent<PlayerController>().animator.gameObject.transform.position;
@@ -234,14 +244,15 @@ public class PlayerController : MonoBehaviour
                         {
                             tmpV3 = item.GetComponent<PlayerController>().animator.gameObject.transform.position;
                             tmpV3.y += Random.Range(-1f, 1f);
-                            tmpV3.x *= 2.5f;
+                            tmpV3.x *= 2f;
+                            
                         }else
                         {
                             tmpV3 = item.GetComponent<PlayerController>().animator.gameObject.transform.position;
                             tmpV3.x += Random.Range(-2f, 2f);
-                            tmpV3.y *= 2.25f;
+                            tmpV3.y *= 1.75f;
                         }
-
+                        audioManager.PlaySFX("Shot Miss");
                         tmpObj.transform.position = tmpV3;
                         tmpObj.transform.up = animator.transform.position - tmpObj.transform.position;
                        // tmpObj.transform.eulerAngles = (Vector2.Angle( animator.transform.position ,tmpObj.transform.position) * Vector3.forward) - new Vector3(0,0,-90);
