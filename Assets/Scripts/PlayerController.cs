@@ -14,20 +14,41 @@ public class PlayerController : MonoBehaviour
     public float initialAccuracy = 30, accuracyIncreasePerSec = 45, accuracyLossperShot = 15, maxAccuracy = 95;
     public Animator animator;
     public GameObject splatter, splitter;
-    
+    public int woundCount = 0;
+    private float health = 100;
+    public float bleedingPerWound = 5;
 
+    public int menuState = 0;
     Vector2 aimingDirection;
+    private Animator menuAnimator;
+   
+
+   // private Vector3 originalPositionQrCode;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        menuAnimator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        InputHandler();
+        
+        if(menuState < 2)
+        {
+            MenuInputHandler();
+        }else if(menuState == 3)
+        {
+            menuAnimator.SetInteger("MenuState", menuState);
+            menuState++;
+            
+        }else if (menuState == 4)
+        {
+            InputHandler();
+        }
+        Bleeding();
+        
     }
 
     void InputHandler ()
@@ -35,11 +56,7 @@ public class PlayerController : MonoBehaviour
         aimingDirection.y = -Input.GetAxis(gameObject.name + "_Horizontal");
         aimingDirection.x = Input.GetAxis(gameObject.name + "_Vertical");
         //Debug.Log("Aims at: " + aimingDirection);
-        if(qrCode == null)
-        {
-            qrCode = transform.GetChild(0).gameObject;
-        }
-        qrCode.transform.localScale = Vector3.one * Mathf.Clamp01( aimingDirection.magnitude);
+        
         if (animator != null)
         {
             animator.SetBool("X", false);
@@ -189,6 +206,7 @@ public class PlayerController : MonoBehaviour
                     
                     if(item.name == player)
                     {
+                        item.GetComponent<PlayerController>().woundCount += 1;
                         GameObject tmpObj =  GameObject.Instantiate(splatter);
                         tmpObj.transform.position = item.GetComponent<PlayerController>().animator.gameObject.transform.position;
                         tmpObj.transform.up = animator.transform.position - tmpObj.transform.position;
@@ -234,6 +252,44 @@ public class PlayerController : MonoBehaviour
             }
         }
         previousTraget = player;
+
+
+    }
+    void MenuInputHandler ()
+    {
+        if(Input.GetButtonDown(gameObject.name + "_Fire"))
+        {
+            menuState += 1;
+            menuAnimator.SetInteger("MenuState", menuState);
+
+        }
+        if(menuState == 1)
+        {
+            aimingDirection.y = -Input.GetAxis(gameObject.name + "_Horizontal");
+            aimingDirection.x = Input.GetAxis(gameObject.name + "_Vertical");
+            //Debug.Log("Aims at: " + aimingDirection);
+            if (qrCode == null)
+            {
+                qrCode = transform.GetChild(0).gameObject;
+            }
+            qrCode.transform.localScale = Vector3.one * Mathf.Clamp01(aimingDirection.magnitude);
+            qrCode.gameObject.GetComponent<RectTransform>().anchoredPosition = aimingDirection * 25; 
+        }
+
+
+    }
+
+    void Bleeding ()
+    {
+        health -= woundCount * bleedingPerWound * Time.deltaTime;
+        if(health <= 0)
+        {
+            Destroy(animator.gameObject);
+            Destroy(gameObject);
+
+
+        }
+
 
 
     }
