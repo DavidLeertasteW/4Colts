@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public int menuState = 0;
     Vector2 aimingDirection;
     private Animator menuAnimator;
+    
    
 
    // private Vector3 originalPositionQrCode;
@@ -29,6 +30,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         menuAnimator = gameObject.GetComponent<Animator>();
+
+        if(qrCode == null)
+        {
+            qrCode = transform.GetChild(0).gameObject;
+        }
     }
 
     // Update is called once per frame
@@ -274,6 +280,9 @@ public class PlayerController : MonoBehaviour
             }
             qrCode.transform.localScale = Vector3.one * Mathf.Clamp01(aimingDirection.magnitude);
             qrCode.gameObject.GetComponent<RectTransform>().anchoredPosition = aimingDirection * 25; 
+        }else
+        {
+            qrCode.gameObject.SetActive(false);
         }
 
 

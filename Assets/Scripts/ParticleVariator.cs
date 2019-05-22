@@ -18,7 +18,7 @@ public class ParticleVariator : MonoBehaviour
         {
             if (Random.Range(0f, 100f) < flipProbability)
             {
-                transform.Rotate(transform.forward * 180);
+                transform.Rotate(Vector3.forward * 180);
             }
             if (Random.Range(0f, 100f) < lightParticleProbability)
             {
@@ -55,6 +55,11 @@ public class ParticleVariator : MonoBehaviour
         a -= 1;
         transform.localScale = transform.localScale + Vector3.one * a * randomScaleDifference;
         transform.Rotate(transform.forward * a * randomAngle);
+        
+        
+            Debug.Log("weird rotation issue");
+            transform.rotation = Quaternion.EulerAngles(0, 0, transform.eulerAngles.z);
+        
     }
 
 
