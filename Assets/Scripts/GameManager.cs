@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     bool gameRunning = false;
     public List<PlayerController> playerControllers;
-    
+    public GameObject informationText;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (var item in playerControllers)
             {
-                if (item.menuState != 2)
+                if (item.menuState != 1)
                 {
                     return;
                 }
@@ -35,9 +35,12 @@ public class GameManager : MonoBehaviour
             }
             foreach (var item in playerControllers)
             {
-                item.menuState = 3;
+                item.menuState = 2;
                 gameRunning = true;
-
+                if (informationText != null)
+                {
+                    informationText.SetActive(false);
+                }
             }
             
 

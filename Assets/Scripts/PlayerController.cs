@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public int menuState = 0;
     public int ammo = 6;
     Vector2 aimingDirection;
-    private Animator menuAnimator;
+    
     AudioManager audioManager;
    
 
@@ -34,9 +35,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        menuAnimator = gameObject.GetComponent<Animator>();
+        animator.gameObject.SetActive(false);
         audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
-        transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = playerName;
+        
 
         if (qrCode == null)
         {
@@ -53,13 +54,16 @@ public class PlayerController : MonoBehaviour
             {
                 MenuInputHandler();
             }
-            else if (menuState == 3)
+            else if(menuState == 2)
             {
-                menuAnimator.SetInteger("MenuState", menuState);
+                
                 menuState++;
+                animator.gameObject.SetActive(true);
 
+                transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = playerName;
+                transform.GetChild(2).gameObject.SetActive(false);
             }
-            else if (menuState == 4)
+            else 
             {
                 InputHandler();
             }
@@ -284,10 +288,15 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonDown(gameObject.name + "_Fire"))
         {
             menuState += 1;
-            menuAnimator.SetInteger("MenuState", menuState);
+            menuState = Mathf.Clamp(menuState, 0, 1);
 
         }
-        if(menuState == 1)
+        if (Input.GetButtonDown(gameObject.name + "_Special")) {
+            menuState -= 1;
+            menuState = Mathf.Clamp(menuState, 0, 1);
+        }
+
+            if (menuState == 0)
         {
             aimingDirection.y = -Input.GetAxis(gameObject.name + "_Horizontal");
             aimingDirection.x = Input.GetAxis(gameObject.name + "_Vertical");
@@ -296,11 +305,22 @@ public class PlayerController : MonoBehaviour
             {
                 qrCode = transform.GetChild(0).gameObject;
             }
+            qrCode.gameObject.SetActive(true);
             qrCode.transform.localScale = Vector3.one * Mathf.Clamp01(aimingDirection.magnitude);
-            qrCode.gameObject.GetComponent<RectTransform>().anchoredPosition = aimingDirection * 25; 
-        }else
+            qrCode.gameObject.GetComponent<RectTransform>().anchoredPosition = aimingDirection * 25;
+            transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = "Ready?";
+            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.name;
+
+        }
+        else if(menuState == 1)
         {
+            transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = "READY!";
             qrCode.gameObject.SetActive(false);
+            
+        }
+        else
+        {
+            
         }
 
 
