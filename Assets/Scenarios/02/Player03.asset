@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b618b6c559a5d4da847c8c391266fd, type: 3}
+  m_Name: Player03
+  m_EditorClassIdentifier: 
+  playerNames:
+  - Maria
+  ammo: 6
+  qrCode: {fileID: 21300000, guid: 4bc0e13e47df3e44bbb9b060e6016380, type: 3}
+  initialAccuracy: 30
+  maxAccuracy: 85
+  accuracyIncreasePerSecond: 15
+  accuracyLossPerShot: 15

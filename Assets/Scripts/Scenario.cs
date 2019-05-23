@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "Inventory/List", order = 1)]
+
+
+[CreateAssetMenu(fileName = "Scenario", menuName = "Levels/Scenario", order = 1)]
 public class Scenario : ScriptableObject
 {
-    public string player1Name = "sherrif";
     
+    
+    public List<Player> players = new List<Player>();
+    public Color stageBackground;
+    [TextArea(5,10)]
+    public string [] desciriptions = new string[] { };
 
-
+   
 }

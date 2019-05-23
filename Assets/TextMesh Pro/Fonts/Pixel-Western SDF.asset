@@ -59,7 +59,7 @@ MonoBehaviour:
   m_SourceFontFileGUID: 70051f014589ba943adb513153497080
   m_SourceFontFile_EditorRef: {fileID: 0}
   m_SourceFontFile: {fileID: 0}
-  m_AtlasPopulationMode: 0
+  m_AtlasPopulationMode: 1
   m_FaceInfo:
     m_FamilyName: Pixel-Western
     m_StyleName: Regular
