@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 299fa0ed8ec3ef94d9b02d3dccc0ce33, type: 3}
-  m_Name: Scenario_02
+  m_Name: Scenario_00
   m_EditorClassIdentifier: 
   players:
   - {fileID: 11400000, guid: c24fe57f83ca354449b681b0f64ec5f8, type: 2}
@@ -19,9 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07e9ebeb9105bfa4da579ab80d69148b, type: 2}
   stageBackground: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0}
   desciriptions:
-  - 'Old Friends meet again at Gunpoint.
-
-
-    Who will make it out alive? '
+  - "Move the stick to reveal your QR Code.\n\nScan it, and read your exposition carefully.
+    \n\nTake some time to get into character.\n\nPress the right button to continue."
   - Ready?
   - Go!

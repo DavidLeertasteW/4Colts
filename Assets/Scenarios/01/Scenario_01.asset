@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Scenario_01
   m_EditorClassIdentifier: 
   players:
-  - {fileID: 11400000, guid: 8dadf55d6c23bc14bad51aaa413c5cea, type: 2}
-  - {fileID: 11400000, guid: 68e84b53fd178074aa1dfb08ab65cfbf, type: 2}
-  - {fileID: 11400000, guid: 9f6c4a8bea96c244f92a8c44d91f2de0, type: 2}
   - {fileID: 11400000, guid: 6f515d8779f674745a269ded3c0e9fea, type: 2}
+  - {fileID: 11400000, guid: 9f6c4a8bea96c244f92a8c44d91f2de0, type: 2}
+  - {fileID: 11400000, guid: 68e84b53fd178074aa1dfb08ab65cfbf, type: 2}
+  - {fileID: 11400000, guid: 8dadf55d6c23bc14bad51aaa413c5cea, type: 2}
   stageBackground: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0}
   desciriptions:
-  - "Use the stick to draw and aim your guns.\n\nUse the right Button to fire, keep
-    in mind your ammo. \n\nKeep an eye on the other players!\n\nDrawing first is considered
-    rude."
+  - 'Old Friends meet again at Gunpoint.
+
+
+    Who will make it out alive? '
   - Ready?
   - Go!
