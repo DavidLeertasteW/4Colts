@@ -36,8 +36,9 @@ public class PlayerController : MonoBehaviour
     {
         menuAnimator = gameObject.GetComponent<Animator>();
         audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
+        transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = playerName;
 
-        if(qrCode == null)
+        if (qrCode == null)
         {
             qrCode = transform.GetChild(0).gameObject;
         }
@@ -46,21 +47,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(menuState < 2)
+        if (!dead)
         {
-            MenuInputHandler();
-        }else if(menuState == 3)
-        {
-            menuAnimator.SetInteger("MenuState", menuState);
-            menuState++;
-            
-        }else if (menuState == 4)
-        {
-            InputHandler();
+            if (menuState < 2)
+            {
+                MenuInputHandler();
+            }
+            else if (menuState == 3)
+            {
+                menuAnimator.SetInteger("MenuState", menuState);
+                menuState++;
+
+            }
+            else if (menuState == 4)
+            {
+                InputHandler();
+            }
+            Bleeding();
         }
-        Bleeding();
-        
     }
 
     void InputHandler ()
@@ -343,8 +347,9 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             animator.SetBool("IsDead", true);
-            Destroy(gameObject);
-
+            //Destroy(gameObject);
+            dead = true;
+            
 
         }
 
