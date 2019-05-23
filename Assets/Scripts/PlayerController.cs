@@ -320,7 +320,11 @@ public class PlayerController : MonoBehaviour
                 {
                     isOver = false;
                 }
-                
+                if (item.GetComponent<PlayerController>().woundCount > 0)
+                {
+                    isOver = false;
+                }
+
             }
             if (isOver)
             {
@@ -330,7 +334,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-        health -= woundCount * bleedingPerWound * Time.deltaTime;
+        health -= (woundCount * woundCount) * bleedingPerWound * Time.deltaTime;
         if(health <= 0)
         {
             if(GameObject.FindGameObjectsWithTag("Player").Length ==1)
@@ -338,7 +342,7 @@ public class PlayerController : MonoBehaviour
                 Time.timeScale = 0.01f;
                 return;
             }
-            Destroy(animator.gameObject);
+            animator.SetBool("IsDead", true);
             Destroy(gameObject);
 
 

@@ -16,13 +16,13 @@ public class AudioManager : MonoBehaviour
         if (type == "Shot Hit")
         {
             SpawnSource(RandomFromList(gunShots), 0.7f, 0.9f, 0.8f, 1.2f, 0, 0);
-            SpawnSource(RandomFromList(bodyImpacts), 0.4f, 0.6f, 0.8f, 1.2f, 0, Random.Range(0f, 0.1f));
+            SpawnSource(RandomFromList(bodyImpacts), 0.4f, 0.6f, 0.8f, 1.2f, 0, Random.Range(0.1f, 0.2f));
             SpawnSource(RandomFromList(shellBounces), 0.1f, 0.3f, 0.8f, 1, 0, Random.Range(0.5f,1));
         }
         if (type == "Shot Miss")
         {
             SpawnSource(RandomFromList(gunShots), 0.7f, 0.9f, 0.8f, 1, 0, 0);
-            SpawnSource(RandomFromList(gravelImpacts), 0.4f, 0.6f, 0.8f, 1.2f, 0, Random.Range(0f, 0.2f));
+            SpawnSource(RandomFromList(gravelImpacts), 0.4f, 0.6f, 0.8f, 1.2f, 0, Random.Range(0.1f, 0.2f));
             SpawnSource(RandomFromList(shellBounces), 0.1f, 0.3f, 0.8f, 1, 0, Random.Range(0.5f, 1));
         }
         if (type == "Empty")
