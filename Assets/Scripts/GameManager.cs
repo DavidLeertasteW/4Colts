@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
     
@@ -27,6 +29,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+
+        }
         if (!gameRunning)
         {
             foreach (var item in playerControllers)
