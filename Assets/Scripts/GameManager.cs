@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject informationText;
     private int descriptionIndex = 0;
     public Scenario scenario;
+
+    private float timeofLastSpawn = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -34,16 +37,8 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0, LoadSceneMode.Single);
 
         }
-        if (Input.GetButton("P1_Special") && Input.GetButton("P1_Fire"))
-        {
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-        }
-        if (Input.GetButton("P2_Special") && Input.GetButton("P2_Fire"))
-        {
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
-
-        }
+        
+        
         if (!gameRunning)
         {
             foreach (var item in playerControllers)
@@ -66,9 +61,33 @@ public class GameManager : MonoBehaviour
             }
             StartCoroutine("UpdateDescriptionText");
 
+            timeofLastSpawn = Time.time;
+
+        }
+
+        if (gameRunning)
+        {
+            
+            if(scenario.objectSpawnedAtFrequency != null || scenario.ammoAtInterval != 0)
+            {
+                if(Time.time - timeofLastSpawn >= scenario.spawnAfter)
+                {
+                    if (scenario.objectSpawnedAtFrequency != null)
+                    {
+                        Destroy(GameObject.Instantiate(scenario.objectSpawnedAtFrequency), scenario.spawnAfter * 2);
+                    }
+                    foreach (var item in playerControllers)
+                    {
+                        item.ammo += scenario.ammoAtInterval;
+                    }
+                    timeofLastSpawn = Time.time;
+                }
 
 
-        }  
+            }
+
+
+        }
     }
 
     private void LoadStage ()
@@ -103,6 +122,9 @@ public class GameManager : MonoBehaviour
         playerControllers[playerObjectIndex].maxAccuracy = player.maxAccuracy;
         playerControllers[playerObjectIndex].maxAmmoinMag = player.maxAmmoinMag;
         playerControllers[playerObjectIndex].ammo = player.ammo;
+        playerControllers[playerObjectIndex].endAfterthisplayerDied = player.endAfterThisPlayerDied;
+        playerControllers[playerObjectIndex].showWhenthisPlayerDies = player.showWhenThisConditionIsMet;
+        playerControllers[playerObjectIndex].showWhenSurvived = player.showWhenSurvived;
         playerControllers[playerObjectIndex].SetAmmoInMag();
         playerControllers[playerObjectIndex].transform.Find("QrCode").gameObject.GetComponent<Image>().sprite = player.qrCode;
 

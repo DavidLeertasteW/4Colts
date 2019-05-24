@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Player02
   m_EditorClassIdentifier: 
   playerNames:
-  - Stacey
+  - Stranger
   ammo: 6
+  maxAmmoinMag: 6
   qrCode: {fileID: 21300000, guid: a3dbc84247d733c4ab45d8a9e8a302cb, type: 3}
+  endAfterThisPlayerDied: 0
+  showWhenThisConditionIsMet: 
+  showWhenSurvived: 
   initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15

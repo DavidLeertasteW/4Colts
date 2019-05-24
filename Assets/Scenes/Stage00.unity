@@ -747,6 +747,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ccd99620580f04d40a6cc990df5931c6,
         type: 2}
+    - target: {fileID: 3724220321735037344, guid: 6e90b120a245d8243b72f8db33aa31a5,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.339
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e90b120a245d8243b72f8db33aa31a5, type: 3}
 --- !u!1001 &432733683
@@ -1293,6 +1298,7 @@ MonoBehaviour:
   playerName: player01
   ready: 0
   dead: 0
+  isOver: 0
   qrCode: {fileID: 0}
   initialAccuracy: 30
   accuracyIncreasePerSec: 15
@@ -1308,6 +1314,9 @@ MonoBehaviour:
   menuState: 0
   ammo: 6
   maxAmmoinMag: 0
+  endAfterthisplayerDied: 0
+  showWhenthisPlayerDies: 
+  showWhenSurvived: 
 --- !u!95 &1061894809
 Animator:
   serializedVersion: 3
@@ -2203,6 +2212,7 @@ MonoBehaviour:
   playerName: player01
   ready: 0
   dead: 0
+  isOver: 0
   qrCode: {fileID: 0}
   initialAccuracy: 30
   accuracyIncreasePerSec: 15
@@ -2218,6 +2228,9 @@ MonoBehaviour:
   menuState: 0
   ammo: 6
   maxAmmoinMag: 0
+  endAfterthisplayerDied: 0
+  showWhenthisPlayerDies: 
+  showWhenSurvived: 
 --- !u!95 &1668131333
 Animator:
   serializedVersion: 3
@@ -2331,6 +2344,7 @@ MonoBehaviour:
   playerName: player01
   ready: 0
   dead: 0
+  isOver: 0
   qrCode: {fileID: 0}
   initialAccuracy: 30
   accuracyIncreasePerSec: 15
@@ -2346,6 +2360,9 @@ MonoBehaviour:
   menuState: 0
   ammo: 6
   maxAmmoinMag: 0
+  endAfterthisplayerDied: 0
+  showWhenthisPlayerDies: 
+  showWhenSurvived: 
 --- !u!95 &1722852924
 Animator:
   serializedVersion: 3
@@ -3036,6 +3053,7 @@ MonoBehaviour:
   playerName: player01
   ready: 0
   dead: 0
+  isOver: 0
   qrCode: {fileID: 0}
   initialAccuracy: 30
   accuracyIncreasePerSec: 15
@@ -3051,6 +3069,9 @@ MonoBehaviour:
   menuState: 0
   ammo: 6
   maxAmmoinMag: 0
+  endAfterthisplayerDied: 0
+  showWhenthisPlayerDies: 
+  showWhenSurvived: 
 --- !u!95 &2117039957
 Animator:
   serializedVersion: 3

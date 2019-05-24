@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf483d6f72eae1449d17d8433556a4d, type: 3}
   m_Name: No shot
   m_EditorClassIdentifier: 
-  headline: No Shot No Crown
-  image: {fileID: 0}
-  descriptionText: Enter neat descritpion here
+  headline: Wolf in Sheep's Clothing
+  sprite: {fileID: 0}
+  descriptionText: 'One of you, wants to kill the rest.
+
+    Who can be trusted?
+
+    Who will draw first?'
   sceneIndex: 2

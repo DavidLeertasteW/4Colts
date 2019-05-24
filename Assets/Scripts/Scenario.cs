@@ -14,5 +14,9 @@ public class Scenario : ScriptableObject
     [TextArea(5,10)]
     public string [] desciriptions = new string[] { };
 
+    public GameObject objectSpawnedAtFrequency;
+    public float spawnAfter = 60;
+    public int ammoAtInterval = 0;
+
    
 }

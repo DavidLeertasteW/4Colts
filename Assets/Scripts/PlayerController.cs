@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     int position;
     public bool ready = false;
     public bool dead = false;
+    public bool isOver = false;
     public GameObject qrCode;
     private string previousTraget = "";
     private float accuracy = 0;
@@ -30,7 +31,9 @@ public class PlayerController : MonoBehaviour
     AudioManager audioManager;
 
     private float timeOfLastReload = 0;
-   
+    public bool endAfterthisplayerDied;
+    public string showWhenthisPlayerDies;
+    public string showWhenSurvived;
 
     
    
@@ -53,7 +56,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dead)
+        if (!dead && !isOver)
         {
             if (menuState < 2)
             {
@@ -357,7 +360,18 @@ public class PlayerController : MonoBehaviour
 
 
             //Time.timeScale = 0.01f;
-            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = playerName + " " + "Survived!";
+            //transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = playerName + " " + "Survived!";
+            GameObject.FindObjectOfType<GameManager>().informationText.SetActive(true);
+            if (showWhenSurvived != "")
+            {
+                GameObject.FindObjectOfType<GameManager>().informationText.GetComponent<TextMeshProUGUI>().text = playerName + " Survived!";
+            }else
+            {
+                GameObject.FindObjectOfType<GameManager>().informationText.GetComponent<TextMeshProUGUI>().text = showWhenSurvived;
+            }
+            
+            
+            transform.GetChild(1).gameObject.SetActive(false);
             Destroy(this);
             return;
         }
@@ -389,15 +403,22 @@ public class PlayerController : MonoBehaviour
         health = 100 -( woundCount * 50);
         if(health <= 0)
         {
-            if(GameObject.FindGameObjectsWithTag("Player").Length ==1)
-            {
-                Time.timeScale = 0.01f;
-                return;
-            }
+            
             animator.SetBool("IsDead", true);
             //Destroy(gameObject);
             dead = true;
-            
+            transform.GetChild(1).gameObject.SetActive(false);
+            if (endAfterthisplayerDied)
+            {
+                foreach (var item in GameObject.FindObjectsOfType<PlayerController>())
+                {
+                    item.isOver = true;
+                    item.transform.GetChild(1).gameObject.SetActive(false);
+                }
+                GameObject.FindObjectOfType<GameManager>().informationText.SetActive(true);
+                GameObject.FindObjectOfType<GameManager>().informationText.GetComponent<TextMeshProUGUI>().text = showWhenthisPlayerDies;
+
+            }
 
         }
 

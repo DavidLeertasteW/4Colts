@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Credits 1
   m_EditorClassIdentifier: 
   headline: Sources
-  image: {fileID: 0}
-  descriptionText: 'With Soundeffects by:
+  sprite: {fileID: 0}
+  descriptionText: 'https://freesound.org/people/Sophia_C/sounds/467183/
 
-    Gun Soundeffect by Sophia C
+    https://www.youtube.com/watch?v=U_iteZiIOcQ
 
-    https://freesound.org/people/Sophia_C/sounds/467183/
-
-'
+    https://www.youtube.com/watch?v=gkDoYyrOQ-c'
   sceneIndex: -1
