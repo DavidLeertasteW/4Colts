@@ -21,6 +21,7 @@ MonoBehaviour:
   desciriptions:
   - "3 Sheriffs, one Town.\n\nThat is at least one too many.\n\nFigure out who it
     is, and get \nrid of them."
+  - Don't talk, when you are dead.
   - Good Luck.
   objectSpawnedAtFrequency: {fileID: 0}
   spawnAfter: 0
