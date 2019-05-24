@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNames:
   - Stranger
-  ammo: 6
+  ammo: 12
   maxAmmoinMag: 6
   qrCode: {fileID: 21300000, guid: 31a1f1e458f5ab249acc7742615ce634, type: 3}
   endAfterThisPlayerDied: 0

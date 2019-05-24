@@ -353,6 +353,10 @@ public class PlayerController : MonoBehaviour
             {
                 livingPCount++;
             }
+            if(item.dead && item.endAfterthisplayerDied)
+            {
+                return;
+            }
 
         }
         if (livingPCount == 1)

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public Scenario scenario;
 
     private float timeofLastSpawn = 0;
+
+    private bool firstTimeObjectSpawn = true;
     
     // Start is called before the first frame update
     void Start()
@@ -70,17 +72,37 @@ public class GameManager : MonoBehaviour
             
             if(scenario.objectSpawnedAtFrequency != null || scenario.ammoAtInterval != 0)
             {
-                if(Time.time - timeofLastSpawn >= scenario.spawnAfter)
+                if (firstTimeObjectSpawn)
                 {
-                    if (scenario.objectSpawnedAtFrequency != null)
+                    if (Time.time - timeofLastSpawn >= (scenario.spawnAfter/4))
                     {
-                        Destroy(GameObject.Instantiate(scenario.objectSpawnedAtFrequency), scenario.spawnAfter * 2);
+                        if (scenario.objectSpawnedAtFrequency != null)
+                        {
+                            GameObject.Instantiate(scenario.objectSpawnedAtFrequency);
+                        }
+                        foreach (var item in playerControllers)
+                        {
+                            item.ammo += scenario.ammoAtInterval;
+                        }
+                        timeofLastSpawn = Time.time;
+                        firstTimeObjectSpawn = false;
+                        Debug.Log("Ran For the First time");
                     }
-                    foreach (var item in playerControllers)
+                    
+                }else
+                {
+                    if (Time.time - timeofLastSpawn >= scenario.spawnAfter)
                     {
-                        item.ammo += scenario.ammoAtInterval;
+                        if (scenario.objectSpawnedAtFrequency != null)
+                        {
+                            GameObject.Instantiate(scenario.objectSpawnedAtFrequency);
+                        }
+                        foreach (var item in playerControllers)
+                        {
+                            item.ammo += scenario.ammoAtInterval;
+                        }
+                        timeofLastSpawn = Time.time;
                     }
-                    timeofLastSpawn = Time.time;
                 }
 
 
@@ -143,7 +165,16 @@ public class GameManager : MonoBehaviour
             float waitfor = Mathf.Sqrt(  scenario.desciriptions[descriptionIndex].Length);
             Debug.Log(waitfor);
             descriptionIndex++;
+            string tmpText = informationText.GetComponent<TextMeshProUGUI>().text;
+
+
             yield return new WaitForSeconds(waitfor);
+
+            if(informationText.GetComponent<TextMeshProUGUI>().text != tmpText)
+            {
+                Debug.Log("Coroutine Canceled");
+                yield break;
+            }
             
 
 
