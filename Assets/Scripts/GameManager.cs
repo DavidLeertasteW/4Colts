@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private int descriptionIndex = 0;
     public Scenario scenario;
 
+    public Scenario[] alternativeScenarios = new Scenario[] { };
     private float timeofLastSpawn = 0;
 
     private bool firstTimeObjectSpawn = true;
@@ -22,6 +23,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(alternativeScenarios.Length > 0)
+        {
+            int index = Random.Range(0, alternativeScenarios.Length+1);
+            index = Mathf.Clamp(index, 0, 2);
+            if(index == alternativeScenarios.Length)
+            {
+                
+            }else
+            {
+                scenario = alternativeScenarios[index];
+            }
+            Debug.Log(index);
+        }
         foreach (var item in GameObject.FindGameObjectsWithTag("Player"))
         {
             playerControllers.Add(item.GetComponent<PlayerController>());

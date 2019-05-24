@@ -310,22 +310,22 @@ PrefabInstance:
     - target: {fileID: 7902664274753381984, guid: 4471addc8fa769443aee4e0a65d624c4,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.0016703904
+      value: 0.002118647
       objectReference: {fileID: 0}
     - target: {fileID: 7902664274753381984, guid: 4471addc8fa769443aee4e0a65d624c4,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.024752468
+      value: 0.048022598
       objectReference: {fileID: 0}
     - target: {fileID: 7902664274753381984, guid: 4471addc8fa769443aee4e0a65d624c4,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9966592
+      value: 0.9957627
       objectReference: {fileID: 0}
     - target: {fileID: 7902664274753381984, guid: 4471addc8fa769443aee4e0a65d624c4,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.95049506
+      value: 0.9039548
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4471addc8fa769443aee4e0a65d624c4, type: 3}
@@ -361,10 +361,10 @@ RectTransform:
   m_Father: {fileID: 1423127617}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1, y: 0.4}
-  m_AnchorMax: {x: 0.9, y: 0.8}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -108}
+  m_SizeDelta: {x: 768, y: 432}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &203162609
 MonoBehaviour:
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
 --- !u!222 &203162610
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -653,7 +653,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 49.3
+  m_fontSize: 49.25
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -943,11 +943,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'The most action oriented of the game modes.
-
-    No hidden roles, infinite ammo, whoever makes it out alive, wins!
-
-    Great practise for later shootuts.'
+  m_text: "A nameless town needs a new sheriff, instead of one, three show up.  \nNow
+    it is up to the mayor to figure out who to trust and who to..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5d9494cd10f51a646b42d2a5923dc89e, type: 2}
   m_sharedMaterial: {fileID: 3852839475483119685, guid: 5d9494cd10f51a646b42d2a5923dc89e,
@@ -1017,10 +1014,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 844198658}
-    characterCount: 144
+    characterCount: 136
     spriteCount: 0
-    spaceCount: 23
-    wordCount: 24
+    spaceCount: 30
+    wordCount: 29
     linkCount: 0
     lineCount: 5
     pageCount: 1
@@ -1129,6 +1126,7 @@ MonoBehaviour:
   stages:
   - {fileID: 11400000, guid: 93522c1738e56e74882213822290de04, type: 2}
   - {fileID: 11400000, guid: 3cb2d28a38c58cf4eb51e81197464c44, type: 2}
+  - {fileID: 11400000, guid: 46df9618ea9f0c544bd704f21815b2bf, type: 2}
   - {fileID: 11400000, guid: d78842049d542ce408ea36e5dd0b059d, type: 2}
   - {fileID: 11400000, guid: 57c7280c4834f7641b0900352ca59e0b, type: 2}
   image: {fileID: 203162609}

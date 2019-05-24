@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf483d6f72eae1449d17d8433556a4d, type: 3}
-  m_Name: Credits
+  m_Name: 3 Sheriffs
   m_EditorClassIdentifier: 
-  headline: Credits
-  sprite: {fileID: 0}
-  descriptionText: "A Game Prototype by:\nDavid Wildemann and \nJan Wichmann\n\nCode
-    Consulting by Danny Boi"
-  sceneIndex: -1
+  headline: The three Sheriffs
+  sprite: {fileID: 21300000, guid: 1ab22f8f5b189434dac76cc71c147ade, type: 3}
+  descriptionText: "A nameless town needs a new sheriff, instead of one, three show
+    up.  \nNow it is up to the mayor to figure out who to trust and who to..."
+  sceneIndex: 3

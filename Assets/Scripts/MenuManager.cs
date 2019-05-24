@@ -115,8 +115,13 @@ public class MenuManager : MonoBehaviour
             image.sprite = null;
         }else
         {
+            image.sprite = null;
+            image.preserveAspect = true;
+            
             image.color = Color.white;
             image.sprite = stage.sprite;
+            
+            
         }
         
         headlineText.SetText(stage.headline);

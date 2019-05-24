@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24b618b6c559a5d4da847c8c391266fd, type: 3}
-  m_Name: Player01
+  m_Name: FakeSherrif
   m_EditorClassIdentifier: 
   playerNames:
-  - Stranger
+  - Sheriff
   ammo: 30
   maxAmmoinMag: 6
-  qrCode: {fileID: 21300000, guid: 017426ceb1da8f748985c7fc8c8c5b48, type: 3}
-  endAfterThisPlayerDied: 1
-  showWhenThisConditionIsMet: The Wolf is Dead!
-  showWhenSurvived: The Wolf got them all!
+  qrCode: {fileID: 21300000, guid: f198d15267c314645928c880897732b9, type: 3}
+  endAfterThisPlayerDied: 0
+  showWhenThisConditionIsMet: 
+  showWhenSurvived: 
   initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15
