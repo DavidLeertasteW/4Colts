@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNames:
   - Dan
-  ammo: 6
+  ammo: 607
+  maxAmmoinMag: 6
   qrCode: {fileID: 21300000, guid: 8c87686650c04c146a52e298a04f415d, type: 3}
-  initialAccuracy: 30
+  initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15
   accuracyLossPerShot: 15

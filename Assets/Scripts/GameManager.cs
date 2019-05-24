@@ -29,12 +29,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+
+        }
+        if (Input.GetButton("P1_Special") && Input.GetButton("P1_Fire"))
         {
             SceneManager.LoadScene(0, LoadSceneMode.Single);
 
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetButton("P2_Special") && Input.GetButton("P2_Fire"))
         {
             SceneManager.LoadScene(1, LoadSceneMode.Single);
 
@@ -68,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadStage ()
     {
-        Camera.main.gameObject.GetComponent<Camera>().backgroundColor = scenario.stageBackground;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().backgroundColor = scenario.stageBackground;
 
         for (int i = 0; i < scenario.players.Count; i++)
         {
@@ -96,7 +101,9 @@ public class GameManager : MonoBehaviour
         playerControllers[playerObjectIndex].initialAccuracy = player.initialAccuracy;
         playerControllers[playerObjectIndex].accuracyLossperShot = player.accuracyLossPerShot;
         playerControllers[playerObjectIndex].maxAccuracy = player.maxAccuracy;
+        playerControllers[playerObjectIndex].maxAmmoinMag = player.maxAmmoinMag;
         playerControllers[playerObjectIndex].ammo = player.ammo;
+        playerControllers[playerObjectIndex].SetAmmoInMag();
         playerControllers[playerObjectIndex].transform.Find("QrCode").gameObject.GetComponent<Image>().sprite = player.qrCode;
 
         
@@ -108,7 +115,7 @@ public class GameManager : MonoBehaviour
 
         while (descriptionIndex < scenario.desciriptions.Length)
         {
-            informationText.GetComponent<TextMeshProUGUI>().SetText(scenario.desciriptions[descriptionIndex]);
+            informationText.GetComponent<TextMeshProUGUI>().text = scenario.desciriptions[descriptionIndex];
             
             
             float waitfor = Mathf.Sqrt(  scenario.desciriptions[descriptionIndex].Length);

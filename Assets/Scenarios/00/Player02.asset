@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNames:
   - Stacey
-  ammo: 6
+  ammo: 607
+  maxAmmoinMag: 6
   qrCode: {fileID: 21300000, guid: 15bb7f81de09aaa4ea26cd3fc238dff8, type: 3}
-  initialAccuracy: 30
+  initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15
   accuracyLossPerShot: 15

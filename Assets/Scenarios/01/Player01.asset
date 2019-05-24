@@ -16,7 +16,7 @@ MonoBehaviour:
   - Dan
   ammo: 6
   qrCode: {fileID: 21300000, guid: 31a1f1e458f5ab249acc7742615ce634, type: 3}
-  initialAccuracy: 30
+  initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15
   accuracyLossPerShot: 15

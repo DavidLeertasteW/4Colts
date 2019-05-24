@@ -8,6 +8,7 @@ public class Player : ScriptableObject
 {
     public string[] playerNames = new string[] { };
     public int ammo = 6;
+    public int maxAmmoinMag = 6;
     public Sprite qrCode;
 
     public float initialAccuracy = 30, maxAccuracy = 90, accuracyIncreasePerSecond = 15, accuracyLossPerShot = 15;

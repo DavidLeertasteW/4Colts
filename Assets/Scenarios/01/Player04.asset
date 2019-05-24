@@ -16,7 +16,7 @@ MonoBehaviour:
   - Bill
   ammo: 6
   qrCode: {fileID: 21300000, guid: 017426ceb1da8f748985c7fc8c8c5b48, type: 3}
-  initialAccuracy: 30
+  initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15
   accuracyLossPerShot: 15

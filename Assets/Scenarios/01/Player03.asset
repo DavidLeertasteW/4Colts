@@ -16,7 +16,7 @@ MonoBehaviour:
   - Rev. McCoy
   ammo: 10
   qrCode: {fileID: 21300000, guid: 8136cb23f345c464a8ba62bc685e8245, type: 3}
-  initialAccuracy: 30
+  initialAccuracy: 15
   maxAccuracy: 70
   accuracyIncreasePerSecond: 15
   accuracyLossPerShot: 15

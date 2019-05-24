@@ -23,8 +23,13 @@ public class PlayerController : MonoBehaviour
     public int menuState = 0;
     public int ammo = 6;
     Vector2 aimingDirection;
+
+    private int ammoInMagazine;
+    public int maxAmmoinMag;
     
     AudioManager audioManager;
+
+    private float timeOfLastReload = 0;
    
 
     
@@ -67,6 +72,7 @@ public class PlayerController : MonoBehaviour
             {
                 InputHandler();
             }
+             
             Bleeding();
         }
     }
@@ -151,6 +157,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             previousTraget = "";
+            if(Input.GetButtonDown(gameObject.name + "_Special"))
+            {
+                Reload();
+
+
+
+            }
         }
             
 
@@ -214,14 +227,14 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonDown(gameObject.name + "_Fire"))
         {
-            if(ammo <= 0)
+            if(ammoInMagazine <= 0)
             {
                 audioManager.PlaySFX("Empty");
                 return;
             }
             //Debug.Log("Hitchance: " + accuracy);
             float tmpRandomValue = Random.Range(0f, 100f);
-            ammo -= 1;
+            ammoInMagazine -= 1;
             if (tmpRandomValue <= accuracy)
             {
                 
@@ -279,6 +292,8 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("Fire");
             }
         }
+        
+        
         previousTraget = player;
 
 
@@ -328,19 +343,31 @@ public class PlayerController : MonoBehaviour
 
     void Bleeding ()
     {
-        if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
+        int livingPCount = 0;
+        foreach (var item in GameObject.FindObjectsOfType<PlayerController>())
         {
+            if (!item.dead)
+            {
+                livingPCount++;
+            }
+
+        }
+        if (livingPCount == 1)
+        {
+
+
             //Time.timeScale = 0.01f;
-            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.name + " " + "Won!";
+            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = playerName + " " + "Survived!";
             Destroy(this);
             return;
         }
-        if(ammo == 0)
+        
+        if(ammo == 0 && ammoInMagazine == 0)
         {
             bool isOver = true;
             foreach (var item in GameObject.FindGameObjectsWithTag("Player"))
             {
-                if (item.GetComponent<PlayerController>().ammo > 0)
+                if (item.GetComponent<PlayerController>().ammo > 0 || item.GetComponent<PlayerController>().ammoInMagazine > 0)
                 {
                     isOver = false;
                 }
@@ -358,7 +385,8 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-        health -= (woundCount * woundCount) * bleedingPerWound * Time.deltaTime;
+        //health -= (woundCount * woundCount * 2) * bleedingPerWound * Time.deltaTime;
+        health = 100 -( woundCount * 50);
         if(health <= 0)
         {
             if(GameObject.FindGameObjectsWithTag("Player").Length ==1)
@@ -375,5 +403,52 @@ public class PlayerController : MonoBehaviour
 
 
 
+    }
+    public void SetAmmoInMag()
+    {
+
+        if(ammo < maxAmmoinMag)
+        {
+            ammoInMagazine = ammo;
+            ammo = 0;
+        }else
+        {
+            ammo -= maxAmmoinMag;
+            ammoInMagazine = maxAmmoinMag;
+        }
+
+        
+
+
+    }
+    void Reload()
+    {
+        if (timeOfLastReload < Time.time - 0.3f)
+        {
+            if (ammo > 0 && ammoInMagazine < maxAmmoinMag)
+            {
+                ammoInMagazine++;
+                ammo--;
+                audioManager.PlaySFX("Reload_Bullet");
+                if (ammoInMagazine == maxAmmoinMag)
+                {
+                    audioManager.PlaySFX("Reload_Full");
+                }
+
+
+            }
+            else if (ammoInMagazine >= maxAmmoinMag)
+            {
+                audioManager.PlaySFX("No_Reload_Because_Full");
+
+
+            }
+            else if (ammo <= 0)
+            {
+                audioManager.PlaySFX("No_Reload_Because_No_Bullets");
+            }
+            timeOfLastReload = Time.time;
+
+        }
     }
 }

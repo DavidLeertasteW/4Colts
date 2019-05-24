@@ -16,7 +16,7 @@ MonoBehaviour:
   - Stacey
   ammo: 6
   qrCode: {fileID: 21300000, guid: a3dbc84247d733c4ab45d8a9e8a302cb, type: 3}
-  initialAccuracy: 30
+  initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15
   accuracyLossPerShot: 15

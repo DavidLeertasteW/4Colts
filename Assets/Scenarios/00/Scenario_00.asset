@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: Scenario_00
   m_EditorClassIdentifier: 
   players:
+  - {fileID: 11400000, guid: 07e9ebeb9105bfa4da579ab80d69148b, type: 2}
   - {fileID: 11400000, guid: c24fe57f83ca354449b681b0f64ec5f8, type: 2}
   - {fileID: 11400000, guid: 5ca77088948cf5149b0d795016b5216a, type: 2}
   - {fileID: 11400000, guid: 9b970dbcf56a82a4382132595580f25a, type: 2}
-  - {fileID: 11400000, guid: 07e9ebeb9105bfa4da579ab80d69148b, type: 2}
-  stageBackground: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0}
+  stageBackground: {r: 0.2830189, g: 0.24828029, b: 0.19891421, a: 0}
   desciriptions:
-  - "Move the stick to reveal your QR Code.\n\nScan it, and read your exposition carefully.
-    \n\nTake some time to get into character.\n\nPress the right button to continue."
+  - 'Move the stick to draw and
+
+    aim your colt.
+
+
+    Fire using the right button.
+
+
+    It is considered bad form to draw first.
+
+'
   - Ready?
   - Go!

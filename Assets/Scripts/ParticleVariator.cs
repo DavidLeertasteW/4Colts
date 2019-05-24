@@ -54,11 +54,11 @@ public class ParticleVariator : MonoBehaviour
         a *= 2;
         a -= 1;
         transform.localScale = transform.localScale + Vector3.one * a * randomScaleDifference;
-        transform.Rotate(transform.forward * a * randomAngle);
+       // transform.Rotate(transform.forward * a * randomAngle);
         
         
-            Debug.Log("weird rotation issue");
-            transform.rotation = Quaternion.EulerAngles(0, 0, transform.eulerAngles.z);
+           // Debug.Log("weird rotation issue");
+            transform.rotation = Quaternion.EulerAngles(0, 0, transform.eulerAngles.z + a * randomAngle);
         
     }
 

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNames:
   - Bill
-  ammo: 6
+  ammo: 607
+  maxAmmoinMag: 6
   qrCode: {fileID: 21300000, guid: 77756eaab93cee64ab53d774729e68e9, type: 3}
-  initialAccuracy: 30
+  initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15
   accuracyLossPerShot: 15
