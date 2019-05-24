@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
 
         }
         if (Input.GetButton("P1_Special") && Input.GetButton("P1_Fire"))

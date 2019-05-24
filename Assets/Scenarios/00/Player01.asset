@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Player01
   m_EditorClassIdentifier: 
   playerNames:
+  - Joe
   - Dan
+  - J. Smith
+  - Billy
   ammo: 607
   maxAmmoinMag: 6
-  qrCode: {fileID: 21300000, guid: 8c87686650c04c146a52e298a04f415d, type: 3}
+  qrCode: {fileID: 21300000, guid: 136101942252c2b43908c3914350bb79, type: 3}
   initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15

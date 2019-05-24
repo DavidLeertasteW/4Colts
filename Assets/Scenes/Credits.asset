@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf483d6f72eae1449d17d8433556a4d, type: 3}
-  m_Name: No shot
+  m_Name: Credits
   m_EditorClassIdentifier: 
-  headline: No Shot No Crown
+  headline: Credits
   image: {fileID: 0}
-  descriptionText: Enter neat descritpion here
-  sceneIndex: 2
+  descriptionText: "A Game Prototype by:\nDavid Wildemann and \nJan Wichmann\n"
+  sceneIndex: -1

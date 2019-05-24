@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Stage : ScriptableObject
 {
     public string headline = "Last Gunslinger";
-    public Image image;
+    public Sprite sprite;
     [TextArea(5, 10)]
     public string descriptionText = "Enter neat descritpion here";
     public int sceneIndex;

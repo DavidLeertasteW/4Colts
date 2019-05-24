@@ -13,11 +13,15 @@ public class MenuManager : MonoBehaviour
     public Transform[] leftParticleSpawners = new Transform[] { };
     public Transform[] rightParticleSpawners = new Transform[] { };
     public GameObject particleObject;
+    public GameObject panel;
 
     private int currentIndex = 0;
 
     bool sceneConfirmed = false;
-
+    private void Awake()
+    {
+        panel.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +32,10 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (!sceneConfirmed)
         {
             //P1
@@ -69,7 +77,10 @@ public class MenuManager : MonoBehaviour
         }
         if(Input.GetButtonDown("P1_Fire")|| Input.GetButtonDown("P2_Fire")|| Input.GetButtonDown("P3_Fire")|| Input.GetButtonDown("P4_Fire"))
         {
-            StartCoroutine("LoadStageAfterEffect");
+            if (stages[currentIndex].sceneIndex >= 0)
+            {
+                StartCoroutine("LoadStageAfterEffect");
+            }
         }
         if(Input.GetButtonDown("P1_Special")|| Input.GetButtonDown("P2_Special")|| Input.GetButtonDown("P3_Special")|| Input.GetButtonDown("P4_Special"))
         {
@@ -98,12 +109,14 @@ public class MenuManager : MonoBehaviour
 
     void UpdateStage (Stage stage)
     {
-        if(stage.image == null)
+        if(stage.sprite == null)
         {
             image.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
+            image.sprite = null;
         }else
         {
-            image = stage.image;
+            image.color = Color.white;
+            image.sprite = stage.sprite;
         }
         
         headlineText.SetText(stage.headline);
@@ -140,7 +153,9 @@ public class MenuManager : MonoBehaviour
         GameObject.FindObjectOfType<AudioManager>().PlaySFX("Shot Hit");
         sceneConfirmed = true;
         SpawnParticles(0);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
+        panel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene(stages[currentIndex].sceneIndex, LoadSceneMode.Single);
 
     }

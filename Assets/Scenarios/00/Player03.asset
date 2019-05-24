@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNames:
   - Maria
+  - Hope
+  - Sammy
+  - Rev. McCoy
   ammo: 607
   maxAmmoinMag: 6
-  qrCode: {fileID: 21300000, guid: 4bc0e13e47df3e44bbb9b060e6016380, type: 3}
+  qrCode: {fileID: 21300000, guid: 136101942252c2b43908c3914350bb79, type: 3}
   initialAccuracy: 15
   maxAccuracy: 85
   accuracyIncreasePerSecond: 15
